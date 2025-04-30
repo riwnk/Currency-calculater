@@ -330,3 +330,9 @@ body {
   text-decoration: none;
   display: inline-block;
 }
+
+
+.fab.fa-linkedin,
+.fab.fa-instagram {
+  display: none;
+}
