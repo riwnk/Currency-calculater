@@ -1,0 +1,332 @@
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+	text-align: center;
+    font-family: sans-serif;
+    background-color: #00539CFF;
+    display: flex;
+    height: 80vh;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+h1{
+    color: #FFD662FF;
+    font-size: 3rem;
+}
+
+.convert, .exchange {
+    font-family: 'Sansita Swashed', cursive;
+    font-size: 25px;
+    color: #ffffff;
+    padding-right: 20px;
+}
+
+input {
+	width: 150px;
+	height: 30px;
+	font-size: 20px;
+    margin: 5px auto;
+    outline: 0;
+}
+
+#original-currency-amount {
+    padding-left: 50px;
+}
+
+button {
+	width: 300px;
+	height: 40px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #00539CFF;
+    font-family: 'Sansita Swashed', cursive;
+}
+
+select {
+	width: 80px;
+	height: 35px;
+	font-size: 20px;
+	text-align: center;
+	padding-left: 10px;
+    outline: 0;
+}
+
+#exchange {
+	width: 50px;
+	height: 50px;
+	border-radius: 50%;
+	margin: 0 20px;
+    outline: 0;
+    color: #00539CFF;
+    border: 4px solid #FFD662FF;
+}
+
+#exchange:active, button:active {
+	transform: scale(0.9);
+}
+
+#output-text {
+    display: none;
+    padding: 20px;
+    font-size: 30px;
+    color: #ffffff;
+}
+
+span {
+    color: #FFD662FF;
+    font-size: 35px;
+}
+
+#exchange-rate {
+    cursor: default;
+}
+
+/* ========== Footer Styling ========== */
+footer {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+}
+
+footer a {
+  font-size: 30px;
+  margin: 0 10px;
+  transition: transform 0.2s ease;
+  text-decoration: none;
+}
+
+footer a:hover {
+  transform: scale(1.2);
+}
+
+/* X icon (SVG) */
+footer a.x-twitter svg {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.2s;
+  fill: black;
+}
+
+footer a.x-twitter:hover svg {
+  transform: scale(1.2);
+}
+
+/* Instagram icon */
+footer a.instagram {
+  color: #C13548;
+}
+footer a.instagram i {
+  color: #C13584 !important;
+}
+color: #E4405F !important; /* وردي غامق */
+footer a.x-twitter svg {
+  transform: translateY(2px);
+}
+
+footer {
+  position: absolute;
+  right: 50px;
+  bottom: 50px;
+  display: flex;
+  align-items: center;
+  gap: 15px; /* مسافة بين الأيقونات */
+}
+
+footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  text-decoration: none;
+}
+
+footer a.x-twitter svg,
+footer a.instagram i {
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  fill: black;
+  color: #C13584; /* للإنستقرام */
+  transition: transform 0.2s ease;
+}
+
+footer a:hover svg,
+footer a:hover i {
+  transform: scale(1.2);
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Sansita+Swashed&display=swap');
+
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Sansita Swashed', cursive;
+  background: url('https://i.ibb.co/zWm6LGnP/IMG-7988.jpg') no-repeat center center fixed;
+  background-size: cover;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 40px 20px;
+}
+
+h1 {
+  color: #ffffff;
+  text-shadow: 2px 2px 4px #000000;
+  font-size: 3rem;
+  margin-bottom: 20px;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+.convert, .exchange {
+  font-size: 22px;
+  color: #ffffff;
+  margin: 15px 0;
+}
+
+input, select {
+  width: 80%;
+  height: 35px;
+  font-size: 18px;
+  padding: 5px 10px;
+  margin: 10px 0;
+  border-radius: 10px;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+button {
+  width: 90%;
+  height: 45px;
+  background-color: #FFD662FF;
+  color: #00539CFF;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  margin-top: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #ffcc00;
+}
+#output-text {
+  margin-top: 20px;
+  font-size: 20px;
+  color: white;
+  display: none;
+}
+
+span {
+  color: #FFD662FF;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+footer {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  gap: 15px;
+}
+
+footer a {
+  font-size: 30px;
+  transition: transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+}
+
+footer a:hover {
+  transform: scale(1.2);
+}
+
+footer a.x-twitter svg {
+  width: 30px;
+  height: 30px;
+  fill: black;
+}
+
+footer a.instagram i {
+  color: #C13584;
+}
+
+input[type="number"] {
+  font-family: 'Courier New', monospace;
+  direction: ltr;
+  unicode-bidi: plaintext;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  background-color: #f2f2f2;
+  display: flex;
+  justify-content: center;
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 430px;
+  min-height: 100vh;
+  background-color: #ffffff;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.exchange-btn {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.exchange-btn:hover {
+  background-color: #ff9800;
+  transform: scale(1.1);
+}
+
+.linkedin {
+  color: white;
+  background-color: #0A66C2;
+  border-radius: 50%;
+  padding: 10px;
+  margin-left: 10px;
+  text-decoration: none;
+  display: inline-block;
+}
