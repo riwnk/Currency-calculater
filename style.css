@@ -1,328 +1,240 @@
-<!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>محول العملات الذكي</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #00539C;
-            --secondary-color: #FFD662;
-            --accent-color: #C13584;
-            --text-light: #FFFFFF;
-            --text-dark: #333333;
-        }
-        
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
-        html, body {
-            height: 100%;
-            font-family: 'Tajawal', sans-serif;
-            background: linear-gradient(135deg, #00539C, #002D62);
-            color: var(--text-light);
-        }
-        
-        body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-        
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            transition: all 0.3s ease;
-        }
-        
-        .container:hover {
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-        }
-        
-        h1 {
-            color: var(--secondary-color);
-            font-size: 2.5rem;
-            margin-bottom: 30px;
-            text-align: center;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-        
-        .converter-form {
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-        
-        .input-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-        
-        label {
-            font-size: 1.1rem;
-            font-weight: 500;
-            color: var(--text-light);
-        }
-        
-        input, select {
-            padding: 12px 15px;
-            border-radius: 10px;
-            border: none;
-            font-size: 1rem;
-            background: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-        
-        input:focus, select:focus {
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(255, 214, 98, 0.4);
-            background: rgba(255, 255, 255, 1);
-        }
-        
-        .currency-row {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .exchange-btn {
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            margin: 10px auto;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .exchange-btn:hover {
-            transform: scale(1.1) rotate(180deg);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .convert-btn {
-            background: var(--secondary-color);
-            color: var(--primary-color);
-            border: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        .convert-btn:hover {
-            background: #ffcc00;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .convert-btn:active {
-            transform: translateY(0);
-        }
-        
-        #output-text {
-            margin-top: 25px;
-            padding: 15px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            font-size: 1.2rem;
-            text-align: center;
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .highlight {
-            color: var(--secondary-color);
-            font-weight: 700;
-            font-size: 1.3rem;
-        }
-        
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin-top: 40px;
-        }
-        
-        .social-link {
-            color: var(--text-light);
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-decoration: none;
-        }
-        
-        .social-link:hover {
-            transform: scale(1.2);
-        }
-        
-        .twitter {
-            background: #1DA1F2;
-        }
-        
-        .instagram {
-            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
-        }
-        
-        .linkedin {
-            background: #0077B5;
-        }
-        
-        /* تأثيرات للشاشات الصغيرة */
-        @media (max-width: 600px) {
-            .container {
-                padding: 20px;
-                border-radius: 15px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            input, select {
-                padding: 10px 12px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>محول العملات الذكي</h1>
-        
-        <div class="converter-form">
-            <div class="input-group">
-                <label for="original-currency-amount">المبلغ المطلوب تحويله</label>
-                <input type="number" id="original-currency-amount" placeholder="أدخل المبلغ" min="0" step="0.01">
-            </div>
-            
-            <div class="input-group">
-                <label for="original-currency">العملة الأصلية</label>
-                <select id="original-currency">
-                    <option value="USD">الدولار الأمريكي (USD)</option>
-                    <option value="EUR">اليورو (EUR)</option>
-                    <option value="GBP">الجنيه الإسترليني (GBP)</option>
-                    <option value="SAR">الريال السعودي (SAR)</option>
-                    <option value="AED">الدرهم الإماراتي (AED)</option>
-                    <option value="EGP">الجنيه المصري (EGP)</option>
-                </select>
-            </div>
-            
-            <button class="exchange-btn" id="exchange" title="تبديل العملات">
-                <i class="fas fa-exchange-alt"></i>
-            </button>
-            
-            <div class="input-group">
-                <label for="new-currency">العملة المستهدفة</label>
-                <select id="new-currency">
-                    <option value="USD">الدولار الأمريكي (USD)</option>
-                    <option value="EUR">اليورو (EUR)</option>
-                    <option value="GBP">الجنيه الإسترليني (GBP)</option>
-                    <option value="SAR" selected>الريال السعودي (SAR)</option>
-                    <option value="AED">الدرهم الإماراتي (AED)</option>
-                    <option value="EGP">الجنيه المصري (EGP)</option>
-                </select>
-            </div>
-            
-            <button class="convert-btn" id="convert">تحويل العملة</button>
-            
-            <div id="output-text">
-                النتيجة: <span id="exchange-rate" class="highlight">0.00</span>
-            </div>
-        </div>
-    </div>
-    
-    <div class="social-links">
-        <a href="#" class="social-link twitter"><i class="fab fa-twitter"></i></a>
-        <a href="#" class="social-link instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" class="social-link linkedin"><i class="fab fa-linkedin-in"></i></a>
-    </div>
+/* styles.css - ملف أنماط محول العملات */
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const convertBtn = document.getElementById('convert');
-            const exchangeBtn = document.getElementById('exchange');
-            const outputText = document.getElementById('output-text');
-            const exchangeRate = document.getElementById('exchange-rate');
-            
-            // مثال على أسعار الصرف (في تطبيق حقيقي، يجب جلبها من API)
-            const exchangeRates = {
-                USD: { USD: 1, EUR: 0.85, GBP: 0.73, SAR: 3.75, AED: 3.67, EGP: 30.90 },
-                EUR: { USD: 1.18, EUR: 1, GBP: 0.86, SAR: 4.42, AED: 4.33, EGP: 36.45 },
-                GBP: { USD: 1.37, EUR: 1.16, GBP: 1, SAR: 5.14, AED: 5.03, EGP: 42.35 },
-                SAR: { USD: 0.27, EUR: 0.23, GBP: 0.19, SAR: 1, AED: 0.98, EGP: 8.24 },
-                AED: { USD: 0.27, EUR: 0.23, GBP: 0.20, SAR: 1.02, AED: 1, EGP: 8.42 },
-                EGP: { USD: 0.032, EUR: 0.027, GBP: 0.024, SAR: 0.12, AED: 0.12, EGP: 1 }
-            };
-            
-            convertBtn.addEventListener('click', function() {
-                const amount = parseFloat(document.getElementById('original-currency-amount').value);
-                const fromCurrency = document.getElementById('original-currency').value;
-                const toCurrency = document.getElementById('new-currency').value;
-                
-                if (isNaN(amount) || amount <= 0) {
-                    alert('الرجاء إدخال مبلغ صحيح أكبر من الصفر');
-                    return;
-                }
-                
-                const rate = exchangeRates[fromCurrency][toCurrency];
-                const result = (amount * rate).toFixed(2);
-                
-                exchangeRate.textContent = result;
-                outputText.style.display = 'block';
-            });
-            
-            exchangeBtn.addEventListener('click', function() {
-                const fromCurrency = document.getElementById('original-currency');
-                const toCurrency = document.getElementById('new-currency');
-                
-                const temp = fromCurrency.value;
-                fromCurrency.value = toCurrency.value;
-                toCurrency.value = temp;
-                
-                // إضافة تأثير للزر
-                this.style.transform = 'rotate(180deg)';
-                setTimeout(() => {
-                    this.style.transform = 'rotate(0)';
-                }, 300);
-            });
-        });
-    </script>
-</body>
-</html>
+/* المتغيرات العامة للألوان */
+:root {
+  --primary-color: #2C3E50;
+  --secondary-color: #E74C3C;
+  --accent-color: #3498DB;
+  --text-light: #FFFFFF;
+  --text-dark: #2C3E50;
+  --shadow-color: rgba(0, 0, 0, 0.3);
+  --glass-bg: rgba(255, 255, 255, 0.15);
+  --input-bg: rgba(255, 255, 255, 0.9);
+}
+
+/* إعادة تعيين الأساسيات */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* أنماط الصفحة الرئيسية */
+html, body {
+  height: 100%;
+  font-family: 'Tajawal', sans-serif;
+  background: url('https://images.unsplash.com/photo-1625225233840-695456021cde?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center fixed;
+  background-size: cover;
+  color: var(--text-light);
+}
+
+/* طبقة شبه شفافة فوق الخلفية */
+body::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: -1;
+}
+
+/* تخطيط الجسم الرئيسي */
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+/* الحاوية الرئيسية */
+.container {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 15px 30px var(--shadow-color);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+/* العنوان الرئيسي */
+h1 {
+  color: var(--secondary-color);
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  text-align: center;
+  text-shadow: 2px 2px 4px var(--shadow-color);
+}
+
+/* نموذج المحول */
+.converter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* مجموعة الإدخال */
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* تسميات الحقول */
+label {
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--text-light);
+}
+
+/* حقول الإدخال والاختيار */
+input, select {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  background: var(--input-bg);
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+input:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.4);
+  background: white;
+}
+
+/* صف العملات */
+.currency-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* زر التبديل */
+.exchange-btn {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.2rem;
+  transition: all 0.3s ease;
+  margin: 10px auto;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.exchange-btn:hover {
+  transform: scale(1.1) rotate(180deg);
+  box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+/* زر التحويل */
+.convert-btn {
+  background: var(--secondary-color);
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  box-shadow: 0 4px 8px var(--shadow-color);
+}
+
+.convert-btn:hover {
+  background: #C0392B;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px var(--shadow-color);
+}
+
+/* منطقة النتيجة */
+#output-text {
+  margin-top: 25px;
+  padding: 15px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  font-size: 1.2rem;
+  text-align: center;
+  display: none;
+  animation: fadeIn 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* النص البارز */
+.highlight {
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 1.3rem;
+}
+
+/* روابط التواصل الاجتماعي */
+.social-links {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 40px;
+}
+
+.social-link {
+  color: white;
+  font-size: 1.5rem;
+  transition: all 0.3s ease;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  background: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.social-link:hover {
+  transform: scale(1.2);
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.twitter { color: #1DA1F2; }
+.instagram { color: #E1306C; }
+.linkedin { color: #0077B5; }
+
+/* التكيف مع الشاشات الصغيرة */
+@media (max-width: 600px) {
+  .container {
+    padding: 20px;
+    border-radius: 15px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  input, select {
+    padding: 10px 12px;
+  }
+  
+  .social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2rem;
+  }
+}
