@@ -332,53 +332,6 @@ body {
 }
 
 
-body {
-    margin: 0;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(to right, #1e3c72, #2a5298);
-    color: white;
-    text-align: center;
-    min-height: 100vh;
-    background-size: cover;
-}
 
-h1 {
-    margin-top: 40px;
-    font-size: 36px;
-    text-shadow: 2px 2px 4px #000000;
-}
 
-.container {
-    background-color: rgba(255, 255, 255, 0.1);
-    padding: 30px;
-    border-radius: 15px;
-    width: 300px;
-    margin: 40px auto;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
-}
-
-input, select, button {
-    margin: 10px 0;
-    padding: 10px;
-    border-radius: 8px;
-    border: none;
-    width: 90%;
-    font-size: 16px;
-}
-
-input:focus, select:focus {
-    outline: none;
-    box-shadow: 0 0 5px #00d1ff;
-}
-
-button {
-    background-color: #00c3ff;
-    color: white;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #009ec3;
-}
 
