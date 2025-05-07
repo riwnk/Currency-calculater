@@ -170,7 +170,7 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: 'Sansita Swashed', cursive;
-  background: url('https://i.ibb.co/zWm6LGnP/IMG-7988.jpg') no-repeat center center fixed;
+  background: url('A_2D_digital_graphic_design_background_for_a_curre.png') no-repeat center center fixed;
   background-size: cover;
 }
 
@@ -331,12 +331,6 @@ body {
   display: inline-block;
 }
 
-body {
-  background-image: url('A_2D_digital_graphic_design_background_for_a_curre.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-}
 
 
 
