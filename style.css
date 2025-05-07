@@ -331,6 +331,13 @@ body {
   display: inline-block;
 }
 
+body {
+  background-image: url('A_2D_digital_graphic_design_background_for_a_curre.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 
 
 
