@@ -172,6 +172,14 @@ body {
   background-repeat: no-repeat;
 }
 
+
+/* خلفية خاصة للجوال */
+@media (max-width: 768px) {
+  body {
+    background-image: url('https://raw.githubusercontent.com/riwnk/Currency-calculater/refs/heads/main/background.png.jpg');
+  }
+}
+
 body {
   display: flex;
   align-items: center;
