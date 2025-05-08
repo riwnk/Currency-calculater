@@ -157,12 +157,27 @@ footer a.instagram i {
 
 /* ========== Mobile Styles ========== */
 @media only screen and (max-width: 767px) {
-  body {
-    background-image: url('https://raw.githubusercontent.com/riwnk/Currency-calculater/main/background.png.jpg') !important;
+  html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background: url('https://raw.githubusercontent.com/riwnk/Currency-calculater/main/background.png.jpg') no-repeat center center fixed !important;
     background-size: cover !important;
     background-position: center !important;
     background-repeat: no-repeat !important;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    align-items: center;
+    justify-content: center;
   }
 
   h1 {
@@ -182,6 +197,20 @@ footer a.instagram i {
   button, .exchange-btn {
     width: 90%;
     font-size: 16px;
+  }
+
+  .convert-button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #FFD662FF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+    margin: 20px auto;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
   }
 
   #output-text {
@@ -204,8 +233,5 @@ footer a.instagram i {
     font-size: 20px;
   }
 }
-@media only screen and (max-width: 767px) {
-  body {
-    background-color: red !important;
-  }
-}
+
+
